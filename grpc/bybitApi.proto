@@ -1,0 +1,62 @@
+syntax= "proto3";
+
+package grpc;
+
+option go_package = "C:/Users/niyaz/GolandProjects/bybit_api_servic_grpc/grpc";
+
+service BybitService{
+  rpc FuturesTransactions(FuturesTransactionsRequest) returns (FuturesTransactionsResponse);
+  rpc SpotAccountInfo(SpotAccountRequest) returns (SpotAccountResponse);
+}
+
+message SpotAccountRequest {
+  int64 UserId = 1;
+  string PublicApi = 2;
+}
+
+message SpotAccountResponse{
+  string account_im_rate = 1;
+  string account_ltv = 2;
+  string account_mm_rate = 3;
+  string account_type = 4;
+  repeated Coin coins = 5;
+  string total_available_balance = 6;
+  string total_equity = 7;
+  string total_initial_margin = 8;
+  string total_maintenance_margin = 9;
+  string total_margin_balance = 10;
+  string total_perp_upl = 11;
+  string total_wallet_balance = 12;
+}
+
+message Coin {
+  string accrued_interest = 1;
+  string available_to_borrow = 2;
+  string available_to_withdraw = 3;
+  string bonus = 4;
+  string borrow_amount = 5;
+  string coin = 6;
+  bool collateral_switch = 7;
+  string cum_realised_pnl = 8;
+  string equity = 9;
+  string locked = 10;
+  bool margin_collateral = 11;
+  string spot_hedging_qty = 12;
+  string total_order_im = 13;
+  string total_position_im = 14;
+  string total_position_mm = 15;
+  string unrealised_pnl = 16;
+  string usd_value = 17;
+  string wallet_balance = 18;
+}
+
+message FuturesTransactionsRequest {
+  int64 pageSize = 1;
+  string PublicApi = 2;
+}
+
+message FuturesTransactionsResponse {
+
+}
+
+
