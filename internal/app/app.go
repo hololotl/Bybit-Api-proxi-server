@@ -13,12 +13,14 @@ type App struct {
 }
 
 func NewApp(log *slog.Logger, grpcPort int, storagePath string) *App {
+	const op = "NewApp"
+	log.With("port", grpcPort, "storagePath", storagePath, "op", op).Info("NewApp")
 	storage, err := postgr.NewStorage(storagePath)
 	if err != nil {
-		panic(err)
+		log.With("storagePath", storagePath, "op", op).Error("NewApp: failed to open storage")
 	}
 	callApi := callApi2.NewCallApi(log)
-	authServer := apiBybit.NewBybit(storage, callApi)
+	authServer := apiBybit.NewBybit(storage, callApi, log)
 	grpcApp := grpcapp.NewApp(log, grpcPort, authServer)
 	return &App{GRPCServer: grpcApp}
 }

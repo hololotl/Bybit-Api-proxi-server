@@ -73,27 +73,183 @@ func (x *SpotAccountRequest) GetPublicApi() string {
 	return ""
 }
 
+type Response struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RetCode       int32                  `protobuf:"varint,1,opt,name=ret_code,json=retCode,proto3" json:"ret_code,omitempty"`
+	RetMsg        string                 `protobuf:"bytes,2,opt,name=ret_msg,json=retMsg,proto3" json:"ret_msg,omitempty"`
+	Result        *Result                `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`
+	RetExtInfo    *RetExtInfo            `protobuf:"bytes,4,opt,name=ret_ext_info,json=retExtInfo,proto3" json:"ret_ext_info,omitempty"`
+	Time          int64                  `protobuf:"varint,5,opt,name=time,proto3" json:"time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Response) Reset() {
+	*x = Response{}
+	mi := &file_bybitApi_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Response) ProtoMessage() {}
+
+func (x *Response) ProtoReflect() protoreflect.Message {
+	mi := &file_bybitApi_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Response.ProtoReflect.Descriptor instead.
+func (*Response) Descriptor() ([]byte, []int) {
+	return file_bybitApi_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Response) GetRetCode() int32 {
+	if x != nil {
+		return x.RetCode
+	}
+	return 0
+}
+
+func (x *Response) GetRetMsg() string {
+	if x != nil {
+		return x.RetMsg
+	}
+	return ""
+}
+
+func (x *Response) GetResult() *Result {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
+func (x *Response) GetRetExtInfo() *RetExtInfo {
+	if x != nil {
+		return x.RetExtInfo
+	}
+	return nil
+}
+
+func (x *Response) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+type Result struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	List          []*SpotAccountResponse `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Result) Reset() {
+	*x = Result{}
+	mi := &file_bybitApi_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Result) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Result) ProtoMessage() {}
+
+func (x *Result) ProtoReflect() protoreflect.Message {
+	mi := &file_bybitApi_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Result.ProtoReflect.Descriptor instead.
+func (*Result) Descriptor() ([]byte, []int) {
+	return file_bybitApi_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Result) GetList() []*SpotAccountResponse {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type RetExtInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RetExtInfo) Reset() {
+	*x = RetExtInfo{}
+	mi := &file_bybitApi_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RetExtInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RetExtInfo) ProtoMessage() {}
+
+func (x *RetExtInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_bybitApi_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RetExtInfo.ProtoReflect.Descriptor instead.
+func (*RetExtInfo) Descriptor() ([]byte, []int) {
+	return file_bybitApi_proto_rawDescGZIP(), []int{3}
+}
+
 type SpotAccountResponse struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	AccountImRate          string                 `protobuf:"bytes,1,opt,name=account_im_rate,json=accountImRate,proto3" json:"account_im_rate,omitempty"`
-	AccountLtv             string                 `protobuf:"bytes,2,opt,name=account_ltv,json=accountLtv,proto3" json:"account_ltv,omitempty"`
-	AccountMmRate          string                 `protobuf:"bytes,3,opt,name=account_mm_rate,json=accountMmRate,proto3" json:"account_mm_rate,omitempty"`
-	AccountType            string                 `protobuf:"bytes,4,opt,name=account_type,json=accountType,proto3" json:"account_type,omitempty"`
-	Coins                  []*Coin                `protobuf:"bytes,5,rep,name=coins,proto3" json:"coins,omitempty"`
-	TotalAvailableBalance  string                 `protobuf:"bytes,6,opt,name=total_available_balance,json=totalAvailableBalance,proto3" json:"total_available_balance,omitempty"`
-	TotalEquity            string                 `protobuf:"bytes,7,opt,name=total_equity,json=totalEquity,proto3" json:"total_equity,omitempty"`
-	TotalInitialMargin     string                 `protobuf:"bytes,8,opt,name=total_initial_margin,json=totalInitialMargin,proto3" json:"total_initial_margin,omitempty"`
-	TotalMaintenanceMargin string                 `protobuf:"bytes,9,opt,name=total_maintenance_margin,json=totalMaintenanceMargin,proto3" json:"total_maintenance_margin,omitempty"`
-	TotalMarginBalance     string                 `protobuf:"bytes,10,opt,name=total_margin_balance,json=totalMarginBalance,proto3" json:"total_margin_balance,omitempty"`
-	TotalPerpUpl           string                 `protobuf:"bytes,11,opt,name=total_perp_upl,json=totalPerpUpl,proto3" json:"total_perp_upl,omitempty"`
-	TotalWalletBalance     string                 `protobuf:"bytes,12,opt,name=total_wallet_balance,json=totalWalletBalance,proto3" json:"total_wallet_balance,omitempty"`
+	AccountIMRate          string                 `protobuf:"bytes,1,opt,name=accountIMRate,proto3" json:"accountIMRate,omitempty"`
+	AccountLTV             string                 `protobuf:"bytes,2,opt,name=accountLTV,proto3" json:"accountLTV,omitempty"`
+	AccountMMRate          string                 `protobuf:"bytes,3,opt,name=accountMMRate,proto3" json:"accountMMRate,omitempty"`
+	AccountType            string                 `protobuf:"bytes,4,opt,name=accountType,proto3" json:"accountType,omitempty"`
+	Coins                  []*Coin                `protobuf:"bytes,5,rep,name=coins,json=coin,proto3" json:"coins,omitempty"`
+	TotalAvailableBalance  string                 `protobuf:"bytes,6,opt,name=totalAvailableBalance,proto3" json:"totalAvailableBalance,omitempty"`
+	TotalEquity            string                 `protobuf:"bytes,7,opt,name=totalEquity,proto3" json:"totalEquity,omitempty"`
+	TotalInitialMargin     string                 `protobuf:"bytes,8,opt,name=totalInitialMargin,proto3" json:"totalInitialMargin,omitempty"`
+	TotalMaintenanceMargin string                 `protobuf:"bytes,9,opt,name=totalMaintenanceMargin,proto3" json:"totalMaintenanceMargin,omitempty"`
+	TotalMarginBalance     string                 `protobuf:"bytes,10,opt,name=totalMarginBalance,proto3" json:"totalMarginBalance,omitempty"`
+	TotalPerpUPL           string                 `protobuf:"bytes,11,opt,name=totalPerpUPL,proto3" json:"totalPerpUPL,omitempty"`
+	TotalWalletBalance     string                 `protobuf:"bytes,12,opt,name=totalWalletBalance,proto3" json:"totalWalletBalance,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
 func (x *SpotAccountResponse) Reset() {
 	*x = SpotAccountResponse{}
-	mi := &file_bybitApi_proto_msgTypes[1]
+	mi := &file_bybitApi_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -105,7 +261,7 @@ func (x *SpotAccountResponse) String() string {
 func (*SpotAccountResponse) ProtoMessage() {}
 
 func (x *SpotAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bybitApi_proto_msgTypes[1]
+	mi := &file_bybitApi_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -118,26 +274,26 @@ func (x *SpotAccountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SpotAccountResponse.ProtoReflect.Descriptor instead.
 func (*SpotAccountResponse) Descriptor() ([]byte, []int) {
-	return file_bybitApi_proto_rawDescGZIP(), []int{1}
+	return file_bybitApi_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *SpotAccountResponse) GetAccountImRate() string {
+func (x *SpotAccountResponse) GetAccountIMRate() string {
 	if x != nil {
-		return x.AccountImRate
+		return x.AccountIMRate
 	}
 	return ""
 }
 
-func (x *SpotAccountResponse) GetAccountLtv() string {
+func (x *SpotAccountResponse) GetAccountLTV() string {
 	if x != nil {
-		return x.AccountLtv
+		return x.AccountLTV
 	}
 	return ""
 }
 
-func (x *SpotAccountResponse) GetAccountMmRate() string {
+func (x *SpotAccountResponse) GetAccountMMRate() string {
 	if x != nil {
-		return x.AccountMmRate
+		return x.AccountMMRate
 	}
 	return ""
 }
@@ -191,9 +347,9 @@ func (x *SpotAccountResponse) GetTotalMarginBalance() string {
 	return ""
 }
 
-func (x *SpotAccountResponse) GetTotalPerpUpl() string {
+func (x *SpotAccountResponse) GetTotalPerpUPL() string {
 	if x != nil {
-		return x.TotalPerpUpl
+		return x.TotalPerpUPL
 	}
 	return ""
 }
@@ -207,31 +363,31 @@ func (x *SpotAccountResponse) GetTotalWalletBalance() string {
 
 type Coin struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	AccruedInterest     string                 `protobuf:"bytes,1,opt,name=accrued_interest,json=accruedInterest,proto3" json:"accrued_interest,omitempty"`
-	AvailableToBorrow   string                 `protobuf:"bytes,2,opt,name=available_to_borrow,json=availableToBorrow,proto3" json:"available_to_borrow,omitempty"`
-	AvailableToWithdraw string                 `protobuf:"bytes,3,opt,name=available_to_withdraw,json=availableToWithdraw,proto3" json:"available_to_withdraw,omitempty"`
+	AccruedInterest     string                 `protobuf:"bytes,1,opt,name=accruedInterest,proto3" json:"accruedInterest,omitempty"`
+	AvailableToBorrow   string                 `protobuf:"bytes,2,opt,name=availableToBorrow,proto3" json:"availableToBorrow,omitempty"`
+	AvailableToWithdraw string                 `protobuf:"bytes,3,opt,name=availableToWithdraw,proto3" json:"availableToWithdraw,omitempty"`
 	Bonus               string                 `protobuf:"bytes,4,opt,name=bonus,proto3" json:"bonus,omitempty"`
-	BorrowAmount        string                 `protobuf:"bytes,5,opt,name=borrow_amount,json=borrowAmount,proto3" json:"borrow_amount,omitempty"`
+	BorrowAmount        string                 `protobuf:"bytes,5,opt,name=borrowAmount,proto3" json:"borrowAmount,omitempty"`
 	Coin                string                 `protobuf:"bytes,6,opt,name=coin,proto3" json:"coin,omitempty"`
-	CollateralSwitch    bool                   `protobuf:"varint,7,opt,name=collateral_switch,json=collateralSwitch,proto3" json:"collateral_switch,omitempty"`
-	CumRealisedPnl      string                 `protobuf:"bytes,8,opt,name=cum_realised_pnl,json=cumRealisedPnl,proto3" json:"cum_realised_pnl,omitempty"`
+	CollateralSwitch    bool                   `protobuf:"varint,7,opt,name=collateralSwitch,proto3" json:"collateralSwitch,omitempty"`
+	CumRealisedPnl      string                 `protobuf:"bytes,8,opt,name=cumRealisedPnl,proto3" json:"cumRealisedPnl,omitempty"`
 	Equity              string                 `protobuf:"bytes,9,opt,name=equity,proto3" json:"equity,omitempty"`
 	Locked              string                 `protobuf:"bytes,10,opt,name=locked,proto3" json:"locked,omitempty"`
-	MarginCollateral    bool                   `protobuf:"varint,11,opt,name=margin_collateral,json=marginCollateral,proto3" json:"margin_collateral,omitempty"`
-	SpotHedgingQty      string                 `protobuf:"bytes,12,opt,name=spot_hedging_qty,json=spotHedgingQty,proto3" json:"spot_hedging_qty,omitempty"`
-	TotalOrderIm        string                 `protobuf:"bytes,13,opt,name=total_order_im,json=totalOrderIm,proto3" json:"total_order_im,omitempty"`
-	TotalPositionIm     string                 `protobuf:"bytes,14,opt,name=total_position_im,json=totalPositionIm,proto3" json:"total_position_im,omitempty"`
-	TotalPositionMm     string                 `protobuf:"bytes,15,opt,name=total_position_mm,json=totalPositionMm,proto3" json:"total_position_mm,omitempty"`
-	UnrealisedPnl       string                 `protobuf:"bytes,16,opt,name=unrealised_pnl,json=unrealisedPnl,proto3" json:"unrealised_pnl,omitempty"`
-	UsdValue            string                 `protobuf:"bytes,17,opt,name=usd_value,json=usdValue,proto3" json:"usd_value,omitempty"`
-	WalletBalance       string                 `protobuf:"bytes,18,opt,name=wallet_balance,json=walletBalance,proto3" json:"wallet_balance,omitempty"`
+	MarginCollateral    bool                   `protobuf:"varint,11,opt,name=marginCollateral,proto3" json:"marginCollateral,omitempty"`
+	SpotHedgingQty      string                 `protobuf:"bytes,12,opt,name=spotHedgingQty,proto3" json:"spotHedgingQty,omitempty"`
+	TotalOrderIM        string                 `protobuf:"bytes,13,opt,name=totalOrderIM,proto3" json:"totalOrderIM,omitempty"`
+	TotalPositionIM     string                 `protobuf:"bytes,14,opt,name=totalPositionIM,proto3" json:"totalPositionIM,omitempty"`
+	TotalPositionMM     string                 `protobuf:"bytes,15,opt,name=totalPositionMM,proto3" json:"totalPositionMM,omitempty"`
+	UnrealisedPnl       string                 `protobuf:"bytes,16,opt,name=unrealisedPnl,proto3" json:"unrealisedPnl,omitempty"`
+	UsdValue            string                 `protobuf:"bytes,17,opt,name=usdValue,proto3" json:"usdValue,omitempty"`
+	WalletBalance       string                 `protobuf:"bytes,18,opt,name=walletBalance,proto3" json:"walletBalance,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
 
 func (x *Coin) Reset() {
 	*x = Coin{}
-	mi := &file_bybitApi_proto_msgTypes[2]
+	mi := &file_bybitApi_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -243,7 +399,7 @@ func (x *Coin) String() string {
 func (*Coin) ProtoMessage() {}
 
 func (x *Coin) ProtoReflect() protoreflect.Message {
-	mi := &file_bybitApi_proto_msgTypes[2]
+	mi := &file_bybitApi_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -256,7 +412,7 @@ func (x *Coin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Coin.ProtoReflect.Descriptor instead.
 func (*Coin) Descriptor() ([]byte, []int) {
-	return file_bybitApi_proto_rawDescGZIP(), []int{2}
+	return file_bybitApi_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Coin) GetAccruedInterest() string {
@@ -343,23 +499,23 @@ func (x *Coin) GetSpotHedgingQty() string {
 	return ""
 }
 
-func (x *Coin) GetTotalOrderIm() string {
+func (x *Coin) GetTotalOrderIM() string {
 	if x != nil {
-		return x.TotalOrderIm
+		return x.TotalOrderIM
 	}
 	return ""
 }
 
-func (x *Coin) GetTotalPositionIm() string {
+func (x *Coin) GetTotalPositionIM() string {
 	if x != nil {
-		return x.TotalPositionIm
+		return x.TotalPositionIM
 	}
 	return ""
 }
 
-func (x *Coin) GetTotalPositionMm() string {
+func (x *Coin) GetTotalPositionMM() string {
 	if x != nil {
-		return x.TotalPositionMm
+		return x.TotalPositionMM
 	}
 	return ""
 }
@@ -395,7 +551,7 @@ type FuturesTransactionsRequest struct {
 
 func (x *FuturesTransactionsRequest) Reset() {
 	*x = FuturesTransactionsRequest{}
-	mi := &file_bybitApi_proto_msgTypes[3]
+	mi := &file_bybitApi_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -407,7 +563,7 @@ func (x *FuturesTransactionsRequest) String() string {
 func (*FuturesTransactionsRequest) ProtoMessage() {}
 
 func (x *FuturesTransactionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_bybitApi_proto_msgTypes[3]
+	mi := &file_bybitApi_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -420,7 +576,7 @@ func (x *FuturesTransactionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuturesTransactionsRequest.ProtoReflect.Descriptor instead.
 func (*FuturesTransactionsRequest) Descriptor() ([]byte, []int) {
-	return file_bybitApi_proto_rawDescGZIP(), []int{3}
+	return file_bybitApi_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *FuturesTransactionsRequest) GetPageSize() int64 {
@@ -445,7 +601,7 @@ type FuturesTransactionsResponse struct {
 
 func (x *FuturesTransactionsResponse) Reset() {
 	*x = FuturesTransactionsResponse{}
-	mi := &file_bybitApi_proto_msgTypes[4]
+	mi := &file_bybitApi_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -457,7 +613,7 @@ func (x *FuturesTransactionsResponse) String() string {
 func (*FuturesTransactionsResponse) ProtoMessage() {}
 
 func (x *FuturesTransactionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bybitApi_proto_msgTypes[4]
+	mi := &file_bybitApi_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -470,7 +626,7 @@ func (x *FuturesTransactionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuturesTransactionsResponse.ProtoReflect.Descriptor instead.
 func (*FuturesTransactionsResponse) Descriptor() ([]byte, []int) {
-	return file_bybitApi_proto_rawDescGZIP(), []int{4}
+	return file_bybitApi_proto_rawDescGZIP(), []int{7}
 }
 
 var File_bybitApi_proto protoreflect.FileDescriptor
@@ -480,43 +636,55 @@ const file_bybitApi_proto_rawDesc = "" +
 	"\x0ebybitApi.proto\x12\x04grpc\"J\n" +
 	"\x12SpotAccountRequest\x12\x16\n" +
 	"\x06UserId\x18\x01 \x01(\x03R\x06UserId\x12\x1c\n" +
-	"\tPublicApi\x18\x02 \x01(\tR\tPublicApi\"\x9c\x04\n" +
-	"\x13SpotAccountResponse\x12&\n" +
-	"\x0faccount_im_rate\x18\x01 \x01(\tR\raccountImRate\x12\x1f\n" +
-	"\vaccount_ltv\x18\x02 \x01(\tR\n" +
-	"accountLtv\x12&\n" +
-	"\x0faccount_mm_rate\x18\x03 \x01(\tR\raccountMmRate\x12!\n" +
-	"\faccount_type\x18\x04 \x01(\tR\vaccountType\x12 \n" +
+	"\tPublicApi\x18\x02 \x01(\tR\tPublicApi\"\xac\x01\n" +
+	"\bResponse\x12\x19\n" +
+	"\bret_code\x18\x01 \x01(\x05R\aretCode\x12\x17\n" +
+	"\aret_msg\x18\x02 \x01(\tR\x06retMsg\x12$\n" +
+	"\x06result\x18\x03 \x01(\v2\f.grpc.ResultR\x06result\x122\n" +
+	"\fret_ext_info\x18\x04 \x01(\v2\x10.grpc.RetExtInfoR\n" +
+	"retExtInfo\x12\x12\n" +
+	"\x04time\x18\x05 \x01(\x03R\x04time\"7\n" +
+	"\x06Result\x12-\n" +
+	"\x04list\x18\x01 \x03(\v2\x19.grpc.SpotAccountResponseR\x04list\"\f\n" +
+	"\n" +
+	"RetExtInfo\"\x88\x04\n" +
+	"\x13SpotAccountResponse\x12$\n" +
+	"\raccountIMRate\x18\x01 \x01(\tR\raccountIMRate\x12\x1e\n" +
+	"\n" +
+	"accountLTV\x18\x02 \x01(\tR\n" +
+	"accountLTV\x12$\n" +
+	"\raccountMMRate\x18\x03 \x01(\tR\raccountMMRate\x12 \n" +
+	"\vaccountType\x18\x04 \x01(\tR\vaccountType\x12\x1f\n" +
 	"\x05coins\x18\x05 \x03(\v2\n" +
-	".grpc.CoinR\x05coins\x126\n" +
-	"\x17total_available_balance\x18\x06 \x01(\tR\x15totalAvailableBalance\x12!\n" +
-	"\ftotal_equity\x18\a \x01(\tR\vtotalEquity\x120\n" +
-	"\x14total_initial_margin\x18\b \x01(\tR\x12totalInitialMargin\x128\n" +
-	"\x18total_maintenance_margin\x18\t \x01(\tR\x16totalMaintenanceMargin\x120\n" +
-	"\x14total_margin_balance\x18\n" +
-	" \x01(\tR\x12totalMarginBalance\x12$\n" +
-	"\x0etotal_perp_upl\x18\v \x01(\tR\ftotalPerpUpl\x120\n" +
-	"\x14total_wallet_balance\x18\f \x01(\tR\x12totalWalletBalance\"\xab\x05\n" +
-	"\x04Coin\x12)\n" +
-	"\x10accrued_interest\x18\x01 \x01(\tR\x0faccruedInterest\x12.\n" +
-	"\x13available_to_borrow\x18\x02 \x01(\tR\x11availableToBorrow\x122\n" +
-	"\x15available_to_withdraw\x18\x03 \x01(\tR\x13availableToWithdraw\x12\x14\n" +
-	"\x05bonus\x18\x04 \x01(\tR\x05bonus\x12#\n" +
-	"\rborrow_amount\x18\x05 \x01(\tR\fborrowAmount\x12\x12\n" +
-	"\x04coin\x18\x06 \x01(\tR\x04coin\x12+\n" +
-	"\x11collateral_switch\x18\a \x01(\bR\x10collateralSwitch\x12(\n" +
-	"\x10cum_realised_pnl\x18\b \x01(\tR\x0ecumRealisedPnl\x12\x16\n" +
+	".grpc.CoinR\x04coin\x124\n" +
+	"\x15totalAvailableBalance\x18\x06 \x01(\tR\x15totalAvailableBalance\x12 \n" +
+	"\vtotalEquity\x18\a \x01(\tR\vtotalEquity\x12.\n" +
+	"\x12totalInitialMargin\x18\b \x01(\tR\x12totalInitialMargin\x126\n" +
+	"\x16totalMaintenanceMargin\x18\t \x01(\tR\x16totalMaintenanceMargin\x12.\n" +
+	"\x12totalMarginBalance\x18\n" +
+	" \x01(\tR\x12totalMarginBalance\x12\"\n" +
+	"\ftotalPerpUPL\x18\v \x01(\tR\ftotalPerpUPL\x12.\n" +
+	"\x12totalWalletBalance\x18\f \x01(\tR\x12totalWalletBalance\"\x96\x05\n" +
+	"\x04Coin\x12(\n" +
+	"\x0faccruedInterest\x18\x01 \x01(\tR\x0faccruedInterest\x12,\n" +
+	"\x11availableToBorrow\x18\x02 \x01(\tR\x11availableToBorrow\x120\n" +
+	"\x13availableToWithdraw\x18\x03 \x01(\tR\x13availableToWithdraw\x12\x14\n" +
+	"\x05bonus\x18\x04 \x01(\tR\x05bonus\x12\"\n" +
+	"\fborrowAmount\x18\x05 \x01(\tR\fborrowAmount\x12\x12\n" +
+	"\x04coin\x18\x06 \x01(\tR\x04coin\x12*\n" +
+	"\x10collateralSwitch\x18\a \x01(\bR\x10collateralSwitch\x12&\n" +
+	"\x0ecumRealisedPnl\x18\b \x01(\tR\x0ecumRealisedPnl\x12\x16\n" +
 	"\x06equity\x18\t \x01(\tR\x06equity\x12\x16\n" +
 	"\x06locked\x18\n" +
-	" \x01(\tR\x06locked\x12+\n" +
-	"\x11margin_collateral\x18\v \x01(\bR\x10marginCollateral\x12(\n" +
-	"\x10spot_hedging_qty\x18\f \x01(\tR\x0espotHedgingQty\x12$\n" +
-	"\x0etotal_order_im\x18\r \x01(\tR\ftotalOrderIm\x12*\n" +
-	"\x11total_position_im\x18\x0e \x01(\tR\x0ftotalPositionIm\x12*\n" +
-	"\x11total_position_mm\x18\x0f \x01(\tR\x0ftotalPositionMm\x12%\n" +
-	"\x0eunrealised_pnl\x18\x10 \x01(\tR\runrealisedPnl\x12\x1b\n" +
-	"\tusd_value\x18\x11 \x01(\tR\busdValue\x12%\n" +
-	"\x0ewallet_balance\x18\x12 \x01(\tR\rwalletBalance\"V\n" +
+	" \x01(\tR\x06locked\x12*\n" +
+	"\x10marginCollateral\x18\v \x01(\bR\x10marginCollateral\x12&\n" +
+	"\x0espotHedgingQty\x18\f \x01(\tR\x0espotHedgingQty\x12\"\n" +
+	"\ftotalOrderIM\x18\r \x01(\tR\ftotalOrderIM\x12(\n" +
+	"\x0ftotalPositionIM\x18\x0e \x01(\tR\x0ftotalPositionIM\x12(\n" +
+	"\x0ftotalPositionMM\x18\x0f \x01(\tR\x0ftotalPositionMM\x12$\n" +
+	"\runrealisedPnl\x18\x10 \x01(\tR\runrealisedPnl\x12\x1a\n" +
+	"\busdValue\x18\x11 \x01(\tR\busdValue\x12$\n" +
+	"\rwalletBalance\x18\x12 \x01(\tR\rwalletBalance\"V\n" +
 	"\x1aFuturesTransactionsRequest\x12\x1a\n" +
 	"\bpageSize\x18\x01 \x01(\x03R\bpageSize\x12\x1c\n" +
 	"\tPublicApi\x18\x02 \x01(\tR\tPublicApi\"\x1d\n" +
@@ -537,25 +705,31 @@ func file_bybitApi_proto_rawDescGZIP() []byte {
 	return file_bybitApi_proto_rawDescData
 }
 
-var file_bybitApi_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_bybitApi_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_bybitApi_proto_goTypes = []any{
 	(*SpotAccountRequest)(nil),          // 0: grpc.SpotAccountRequest
-	(*SpotAccountResponse)(nil),         // 1: grpc.SpotAccountResponse
-	(*Coin)(nil),                        // 2: grpc.Coin
-	(*FuturesTransactionsRequest)(nil),  // 3: grpc.FuturesTransactionsRequest
-	(*FuturesTransactionsResponse)(nil), // 4: grpc.FuturesTransactionsResponse
+	(*Response)(nil),                    // 1: grpc.Response
+	(*Result)(nil),                      // 2: grpc.Result
+	(*RetExtInfo)(nil),                  // 3: grpc.RetExtInfo
+	(*SpotAccountResponse)(nil),         // 4: grpc.SpotAccountResponse
+	(*Coin)(nil),                        // 5: grpc.Coin
+	(*FuturesTransactionsRequest)(nil),  // 6: grpc.FuturesTransactionsRequest
+	(*FuturesTransactionsResponse)(nil), // 7: grpc.FuturesTransactionsResponse
 }
 var file_bybitApi_proto_depIdxs = []int32{
-	2, // 0: grpc.SpotAccountResponse.coins:type_name -> grpc.Coin
-	3, // 1: grpc.BybitService.FuturesTransactions:input_type -> grpc.FuturesTransactionsRequest
-	0, // 2: grpc.BybitService.SpotAccountInfo:input_type -> grpc.SpotAccountRequest
-	4, // 3: grpc.BybitService.FuturesTransactions:output_type -> grpc.FuturesTransactionsResponse
-	1, // 4: grpc.BybitService.SpotAccountInfo:output_type -> grpc.SpotAccountResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 0: grpc.Response.result:type_name -> grpc.Result
+	3, // 1: grpc.Response.ret_ext_info:type_name -> grpc.RetExtInfo
+	4, // 2: grpc.Result.list:type_name -> grpc.SpotAccountResponse
+	5, // 3: grpc.SpotAccountResponse.coins:type_name -> grpc.Coin
+	6, // 4: grpc.BybitService.FuturesTransactions:input_type -> grpc.FuturesTransactionsRequest
+	0, // 5: grpc.BybitService.SpotAccountInfo:input_type -> grpc.SpotAccountRequest
+	7, // 6: grpc.BybitService.FuturesTransactions:output_type -> grpc.FuturesTransactionsResponse
+	4, // 7: grpc.BybitService.SpotAccountInfo:output_type -> grpc.SpotAccountResponse
+	6, // [6:8] is the sub-list for method output_type
+	4, // [4:6] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_bybitApi_proto_init() }
@@ -569,7 +743,7 @@ func file_bybitApi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bybitApi_proto_rawDesc), len(file_bybitApi_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

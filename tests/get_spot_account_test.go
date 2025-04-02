@@ -10,6 +10,7 @@ import (
 )
 
 func Test_get_spot_account_test_HappyPath(t *testing.T) {
+	// correct data
 	ctx, st := suite.New(t)
 	userId := 2
 	PublicApiKey := "3w3LwpWhSbr9wIzKHA"
@@ -17,7 +18,15 @@ func Test_get_spot_account_test_HappyPath(t *testing.T) {
 	if err != nil {
 		fmt.Printf("SpotAccountInfo error: %v\n", err)
 	}
-	fmt.Println("resp:", resp.Coins)
 	require.NoError(t, err)
 	assert.NotEmpty(t, resp)
+}
+
+func Test_get_spot_account_test_Fail(t *testing.T) {
+	// incorrect publicApiKey
+	ctx, st := suite.New(t)
+	userId := 2
+	PublicApiKey := "3w3LwpWhSbr9wIzKH"
+	_, err := st.AppClient.SpotAccountInfo(ctx, &grpcApi.SpotAccountRequest{UserId: int64(userId), PublicApi: PublicApiKey})
+	require.Error(t, err)
 }

@@ -14,40 +14,55 @@ message SpotAccountRequest {
   string PublicApi = 2;
 }
 
+message Response {
+  int32 ret_code = 1 [json_name = "retCode"];
+  string ret_msg = 2 [json_name = "retMsg"];
+  Result result = 3 [json_name = "result"];
+  RetExtInfo ret_ext_info = 4 [json_name = "retExtInfo"];
+  int64 time = 5 [json_name = "time"];
+}
+
+message Result {
+  repeated SpotAccountResponse list = 1[json_name = "list"];
+}
+
+message RetExtInfo {
+}
+
 message SpotAccountResponse{
-  string account_im_rate = 1;
-  string account_ltv = 2;
-  string account_mm_rate = 3;
-  string account_type = 4;
-  repeated Coin coins = 5;
-  string total_available_balance = 6;
-  string total_equity = 7;
-  string total_initial_margin = 8;
-  string total_maintenance_margin = 9;
-  string total_margin_balance = 10;
-  string total_perp_upl = 11;
-  string total_wallet_balance = 12;
+  string accountIMRate = 1 [json_name = "accountIMRate"];
+  string accountLTV = 2 [json_name = "accountLTV"];
+  string accountMMRate = 3 [json_name = "accountMMRate"];
+  string accountType = 4 [json_name = "accountType"];
+  repeated Coin coins = 5 [json_name = "coin"];
+  string totalAvailableBalance = 6 [json_name = "totalAvailableBalance"];
+  string totalEquity = 7 [json_name = "totalEquity"];
+  string totalInitialMargin = 8 [json_name = "totalInitialMargin"];
+  string totalMaintenanceMargin = 9 [json_name = "totalMaintenanceMargin"];
+  string totalMarginBalance = 10 [json_name = "totalMarginBalance"];
+  string totalPerpUPL = 11 [json_name = "totalPerpUPL"];
+  string totalWalletBalance = 12 [json_name = "totalWalletBalance"];
 }
 
 message Coin {
-  string accrued_interest = 1;
-  string available_to_borrow = 2;
-  string available_to_withdraw = 3;
-  string bonus = 4;
-  string borrow_amount = 5;
-  string coin = 6;
-  bool collateral_switch = 7;
-  string cum_realised_pnl = 8;
-  string equity = 9;
-  string locked = 10;
-  bool margin_collateral = 11;
-  string spot_hedging_qty = 12;
-  string total_order_im = 13;
-  string total_position_im = 14;
-  string total_position_mm = 15;
-  string unrealised_pnl = 16;
-  string usd_value = 17;
-  string wallet_balance = 18;
+  string accruedInterest = 1 [json_name = "accruedInterest"];
+  string availableToBorrow = 2 [json_name = "availableToBorrow"];
+  string availableToWithdraw = 3 [json_name = "availableToWithdraw"];
+  string bonus = 4 [json_name = "bonus"];
+  string borrowAmount = 5 [json_name = "borrowAmount"];
+  string coin = 6 [json_name = "coin"];
+  bool collateralSwitch = 7 [json_name = "collateralSwitch"];
+  string cumRealisedPnl = 8 [json_name = "cumRealisedPnl"];
+  string equity = 9 [json_name = "equity"];
+  string locked = 10 [json_name = "locked"];
+  bool marginCollateral = 11 [json_name = "marginCollateral"];
+  string spotHedgingQty = 12 [json_name = "spotHedgingQty"];
+  string totalOrderIM = 13 [json_name = "totalOrderIM"];
+  string totalPositionIM = 14 [json_name = "totalPositionIM"];
+  string totalPositionMM = 15 [json_name = "totalPositionMM"];
+  string unrealisedPnl = 16 [json_name = "unrealisedPnl"];
+  string usdValue = 17 [json_name = "usdValue"];
+  string walletBalance = 18 [json_name = "walletBalance"];
 }
 
 message FuturesTransactionsRequest {

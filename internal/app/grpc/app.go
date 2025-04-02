@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 	"google.golang.org/grpc"
-	"log"
 	"log/slog"
 	"net"
 )
@@ -24,18 +23,22 @@ func NewApp(log *slog.Logger, port int, authServer authgrpc.ApiFunctions) *App {
 
 func (app *App) MustRun() {
 	if err := app.Run(); err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
 
 func (app *App) Run() error {
+	const op = "Run"
+
+	app.log.With("port", app.port).Info("Starting server")
 	l, err := net.Listen("tcp", fmt.Sprintf(":%d", app.port))
 	if err != nil {
-		return fmt.Errorf("%s: %w", err)
+		return fmt.Errorf("%s: %w", op, err)
 	}
 	if err := app.grpcServer.Serve(l); err != nil {
-		return fmt.Errorf("%s: %w", err)
+		return fmt.Errorf("%s: %w", op, err)
 	}
+	
 	return nil
 
 }

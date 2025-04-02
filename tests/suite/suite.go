@@ -2,7 +2,6 @@ package suite
 
 import (
 	grpcApi "bybit_api_servic_grpc/grpc"
-	"fmt"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -34,7 +33,6 @@ func New(t *testing.T) (context.Context, *Suite) {
 		// Используем insecure-коннект для тестов
 		grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		fmt.Println("пизда бля горим")
 		t.Fatalf("grpc server connection failed: %v", err)
 	}
 	authClient := grpcApi.NewBybitServiceClient(cc)

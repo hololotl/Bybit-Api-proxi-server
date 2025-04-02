@@ -1,11 +1,12 @@
 package callApi
 
 import (
+	grpcFile "bybit_api_servic_grpc/grpc"
 	"bybit_api_servic_grpc/internal/callApi/models"
-	"encoding/json"
 	"fmt"
 	bybit "github.com/bybit-exchange/bybit.go.api"
 	"golang.org/x/net/context"
+	"google.golang.org/protobuf/encoding/protojson"
 	"log/slog"
 )
 
@@ -13,18 +14,16 @@ type CallApi struct {
 	log *slog.Logger
 }
 
-func (api *CallApi) GetUserAccountInfo(ctx context.Context, PublicApiKey string, PrivateApiKey string) (*models.Response, error) {
+func (api *CallApi) GetUserAccountInfo(ctx context.Context, PublicApiKey string, PrivateApiKey string) (*grpcFile.Response, error) {
+	const op = "CallApi.GetUserAccountInfo"
 	client := bybit.NewBybitHttpClient(PublicApiKey, PrivateApiKey, bybit.WithBaseURL(bybit.MAINNET))
 	params1 := map[string]interface{}{"accountType": "UNIFIED"}
 	accountResults, err := client.NewUtaBybitServiceWithParams(params1).GetAccountWallet(context.Background())
 	if err != nil {
-		fmt.Println(err)
-		return nil, err
+		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 	res := bybit.PrettyPrint(accountResults)
-	fmt.Println(res)
 	result := parseJsonGetBalance(res)
-	fmt.Println(result)
 	return &result, nil
 }
 
@@ -37,9 +36,9 @@ func (api *CallApi) GetFuturesTransactions(ctx context.Context, pageSize int, Pu
 	return nil, nil
 }
 
-func parseJsonGetBalance(res string) models.Response {
-	var r models.Response
-	if err := json.Unmarshal([]byte(res), &r); err != nil {
+func parseJsonGetBalance(res string) grpcFile.Response {
+	var r grpcFile.Response
+	if err := protojson.Unmarshal([]byte(res), &r); err != nil {
 		fmt.Printf("Failed to parse JSON: %v\nOriginal JSON: %s\n", err, res)
 	}
 	return r

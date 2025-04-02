@@ -13,7 +13,7 @@ const (
 )
 
 func main() {
-	log := setupLogger("1")
+	log := setupLogger(envLocal)
 	conString := "user=postgres password=2005 dbname=petProjBybit sslmode=disable"
 	application := app.NewApp(log, 8083, conString)
 	application.GRPCServer.MustRun()
