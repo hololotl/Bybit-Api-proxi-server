@@ -21,7 +21,6 @@ func Test_get_spot_account_test_HappyPath(t *testing.T) {
 	require.NoError(t, err)
 	assert.NotEmpty(t, resp)
 }
-
 func Test_get_spot_account_test_Fail(t *testing.T) {
 	// incorrect publicApiKey
 	ctx, st := suite.New(t)

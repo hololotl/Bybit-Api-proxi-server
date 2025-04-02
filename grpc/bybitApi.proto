@@ -5,7 +5,7 @@ package grpc;
 option go_package = "C:/Users/niyaz/GolandProjects/bybit_api_servic_grpc/grpc";
 
 service BybitService{
-  rpc FuturesTransactions(FuturesTransactionsRequest) returns (FuturesTransactionsResponse);
+  rpc FuturesTransactions(FuturesTransactionsRequest) returns (TransactionResult);
   rpc SpotAccountInfo(SpotAccountRequest) returns (SpotAccountResponse);
 }
 
@@ -70,8 +70,40 @@ message FuturesTransactionsRequest {
   string PublicApi = 2;
 }
 
-message FuturesTransactionsResponse {
+message TransactionResponse {
+  int32 ret_code = 1 [json_name = "retCode"];
+  string ret_msg = 2 [json_name = "retMsg"];
+  TransactionResult result = 3 [json_name = "result"];
+  RetExtInfo ret_ext_info = 4 [json_name = "retExtInfo"];
+  int64 time = 5 [json_name = "time"];
+}
 
+message TransactionResult {
+  repeated Transaction list = 1 [json_name = "list"];
+  string next_page_cursor = 2 [json_name = "nextPageCursor"];
+}
+
+message Transaction {
+  string bonus_change = 1 [json_name = "bonusChange"];
+  string cash_balance = 2 [json_name = "cashBalance"];
+  string cash_flow = 3 [json_name = "cashFlow"];
+  string category = 4 [json_name = "category"];
+  string change = 5 [json_name = "change"];
+  string currency = 6 [json_name = "currency"];
+  string fee = 7 [json_name = "fee"];
+  string fee_rate = 8 [json_name = "feeRate"];
+  string funding = 9 [json_name = "funding"];
+  string id = 10 [json_name = "id"];
+  string order_id = 11 [json_name = "orderId"];
+  string order_link_id = 12 [json_name = "orderLinkId"];
+  string qty = 13 [json_name = "qty"];
+  string side = 14 [json_name = "side"];
+  string size = 15 [json_name = "size"];
+  string symbol = 16 [json_name = "symbol"];
+  string trade_id = 17 [json_name = "tradeId"];
+  string trade_price = 18 [json_name = "tradePrice"];
+  string transaction_time = 19 [json_name = "transactionTime"];
+  string type = 20 [json_name = "type"];
 }
 
 
