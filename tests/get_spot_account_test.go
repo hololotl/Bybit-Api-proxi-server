@@ -29,3 +29,24 @@ func Test_get_spot_account_test_Fail(t *testing.T) {
 	_, err := st.AppClient.SpotAccountInfo(ctx, &grpcApi.SpotAccountRequest{UserId: int64(userId), PublicApi: PublicApiKey})
 	require.Error(t, err)
 }
+
+func Test_get_Transaction_res_HappyPath(t *testing.T) {
+	ctx, st := suite.New(t)
+	userId := 2
+	PublicApiKey := "3w3LwpWhSbr9wIzKHA"
+	resp, err := st.AppClient.FuturesTransactions(ctx, &grpcApi.FuturesTransactionsRequest{UserId: int64(userId), PublicApi: PublicApiKey})
+	if err != nil {
+		fmt.Printf("FuturesTransactions error: %v\n", err)
+	}
+	assert.NotEmpty(t, resp)
+
+}
+
+func Test_get_Transaction_res_fail(t *testing.T) {
+	ctx, st := suite.New(t)
+	userId := 2
+	PublicApiKey := "3w3LwpWhSbr9wIzKA"
+	_, err := st.AppClient.FuturesTransactions(ctx, &grpcApi.FuturesTransactionsRequest{UserId: int64(userId), PublicApi: PublicApiKey})
+	require.Error(t, err)
+
+}

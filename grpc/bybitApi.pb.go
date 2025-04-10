@@ -545,6 +545,7 @@ type FuturesTransactionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PageSize      int64                  `protobuf:"varint,1,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
 	PublicApi     string                 `protobuf:"bytes,2,opt,name=PublicApi,proto3" json:"PublicApi,omitempty"`
+	UserId        int64                  `protobuf:"varint,3,opt,name=UserId,proto3" json:"UserId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -593,26 +594,38 @@ func (x *FuturesTransactionsRequest) GetPublicApi() string {
 	return ""
 }
 
-type FuturesTransactionsResponse struct {
+func (x *FuturesTransactionsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type TransactionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	RetCode       int32                  `protobuf:"varint,1,opt,name=ret_code,json=retCode,proto3" json:"ret_code,omitempty"`
+	RetMsg        string                 `protobuf:"bytes,2,opt,name=ret_msg,json=retMsg,proto3" json:"ret_msg,omitempty"`
+	Result        *TransactionResult     `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`
+	RetExtInfo    *RetExtInfo            `protobuf:"bytes,4,opt,name=ret_ext_info,json=retExtInfo,proto3" json:"ret_ext_info,omitempty"`
+	Time          int64                  `protobuf:"varint,5,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *FuturesTransactionsResponse) Reset() {
-	*x = FuturesTransactionsResponse{}
+func (x *TransactionResponse) Reset() {
+	*x = TransactionResponse{}
 	mi := &file_bybitApi_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *FuturesTransactionsResponse) String() string {
+func (x *TransactionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FuturesTransactionsResponse) ProtoMessage() {}
+func (*TransactionResponse) ProtoMessage() {}
 
-func (x *FuturesTransactionsResponse) ProtoReflect() protoreflect.Message {
+func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_bybitApi_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -624,9 +637,292 @@ func (x *FuturesTransactionsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FuturesTransactionsResponse.ProtoReflect.Descriptor instead.
-func (*FuturesTransactionsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TransactionResponse.ProtoReflect.Descriptor instead.
+func (*TransactionResponse) Descriptor() ([]byte, []int) {
 	return file_bybitApi_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *TransactionResponse) GetRetCode() int32 {
+	if x != nil {
+		return x.RetCode
+	}
+	return 0
+}
+
+func (x *TransactionResponse) GetRetMsg() string {
+	if x != nil {
+		return x.RetMsg
+	}
+	return ""
+}
+
+func (x *TransactionResponse) GetResult() *TransactionResult {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
+func (x *TransactionResponse) GetRetExtInfo() *RetExtInfo {
+	if x != nil {
+		return x.RetExtInfo
+	}
+	return nil
+}
+
+func (x *TransactionResponse) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+type TransactionResult struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	List           []*Transaction         `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	NextPageCursor string                 `protobuf:"bytes,2,opt,name=next_page_cursor,json=nextPageCursor,proto3" json:"next_page_cursor,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *TransactionResult) Reset() {
+	*x = TransactionResult{}
+	mi := &file_bybitApi_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransactionResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransactionResult) ProtoMessage() {}
+
+func (x *TransactionResult) ProtoReflect() protoreflect.Message {
+	mi := &file_bybitApi_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransactionResult.ProtoReflect.Descriptor instead.
+func (*TransactionResult) Descriptor() ([]byte, []int) {
+	return file_bybitApi_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *TransactionResult) GetList() []*Transaction {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+func (x *TransactionResult) GetNextPageCursor() string {
+	if x != nil {
+		return x.NextPageCursor
+	}
+	return ""
+}
+
+type Transaction struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BonusChange     string                 `protobuf:"bytes,1,opt,name=bonus_change,json=bonusChange,proto3" json:"bonus_change,omitempty"`
+	CashBalance     string                 `protobuf:"bytes,2,opt,name=cash_balance,json=cashBalance,proto3" json:"cash_balance,omitempty"`
+	CashFlow        string                 `protobuf:"bytes,3,opt,name=cash_flow,json=cashFlow,proto3" json:"cash_flow,omitempty"`
+	Category        string                 `protobuf:"bytes,4,opt,name=category,proto3" json:"category,omitempty"`
+	Change          string                 `protobuf:"bytes,5,opt,name=change,proto3" json:"change,omitempty"`
+	Currency        string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
+	Fee             string                 `protobuf:"bytes,7,opt,name=fee,proto3" json:"fee,omitempty"`
+	FeeRate         string                 `protobuf:"bytes,8,opt,name=fee_rate,json=feeRate,proto3" json:"fee_rate,omitempty"`
+	Funding         string                 `protobuf:"bytes,9,opt,name=funding,proto3" json:"funding,omitempty"`
+	Id              string                 `protobuf:"bytes,10,opt,name=id,proto3" json:"id,omitempty"`
+	OrderId         string                 `protobuf:"bytes,11,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	OrderLinkId     string                 `protobuf:"bytes,12,opt,name=order_link_id,json=orderLinkId,proto3" json:"order_link_id,omitempty"`
+	Qty             string                 `protobuf:"bytes,13,opt,name=qty,proto3" json:"qty,omitempty"`
+	Side            string                 `protobuf:"bytes,14,opt,name=side,proto3" json:"side,omitempty"`
+	Size            string                 `protobuf:"bytes,15,opt,name=size,proto3" json:"size,omitempty"`
+	Symbol          string                 `protobuf:"bytes,16,opt,name=symbol,proto3" json:"symbol,omitempty"`
+	TradeId         string                 `protobuf:"bytes,17,opt,name=trade_id,json=tradeId,proto3" json:"trade_id,omitempty"`
+	TradePrice      string                 `protobuf:"bytes,18,opt,name=trade_price,json=tradePrice,proto3" json:"trade_price,omitempty"`
+	TransactionTime string                 `protobuf:"bytes,19,opt,name=transaction_time,json=transactionTime,proto3" json:"transaction_time,omitempty"`
+	Type            string                 `protobuf:"bytes,20,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Transaction) Reset() {
+	*x = Transaction{}
+	mi := &file_bybitApi_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Transaction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Transaction) ProtoMessage() {}
+
+func (x *Transaction) ProtoReflect() protoreflect.Message {
+	mi := &file_bybitApi_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Transaction.ProtoReflect.Descriptor instead.
+func (*Transaction) Descriptor() ([]byte, []int) {
+	return file_bybitApi_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Transaction) GetBonusChange() string {
+	if x != nil {
+		return x.BonusChange
+	}
+	return ""
+}
+
+func (x *Transaction) GetCashBalance() string {
+	if x != nil {
+		return x.CashBalance
+	}
+	return ""
+}
+
+func (x *Transaction) GetCashFlow() string {
+	if x != nil {
+		return x.CashFlow
+	}
+	return ""
+}
+
+func (x *Transaction) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *Transaction) GetChange() string {
+	if x != nil {
+		return x.Change
+	}
+	return ""
+}
+
+func (x *Transaction) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *Transaction) GetFee() string {
+	if x != nil {
+		return x.Fee
+	}
+	return ""
+}
+
+func (x *Transaction) GetFeeRate() string {
+	if x != nil {
+		return x.FeeRate
+	}
+	return ""
+}
+
+func (x *Transaction) GetFunding() string {
+	if x != nil {
+		return x.Funding
+	}
+	return ""
+}
+
+func (x *Transaction) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Transaction) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *Transaction) GetOrderLinkId() string {
+	if x != nil {
+		return x.OrderLinkId
+	}
+	return ""
+}
+
+func (x *Transaction) GetQty() string {
+	if x != nil {
+		return x.Qty
+	}
+	return ""
+}
+
+func (x *Transaction) GetSide() string {
+	if x != nil {
+		return x.Side
+	}
+	return ""
+}
+
+func (x *Transaction) GetSize() string {
+	if x != nil {
+		return x.Size
+	}
+	return ""
+}
+
+func (x *Transaction) GetSymbol() string {
+	if x != nil {
+		return x.Symbol
+	}
+	return ""
+}
+
+func (x *Transaction) GetTradeId() string {
+	if x != nil {
+		return x.TradeId
+	}
+	return ""
+}
+
+func (x *Transaction) GetTradePrice() string {
+	if x != nil {
+		return x.TradePrice
+	}
+	return ""
+}
+
+func (x *Transaction) GetTransactionTime() string {
+	if x != nil {
+		return x.TransactionTime
+	}
+	return ""
+}
+
+func (x *Transaction) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
 }
 
 var File_bybitApi_proto protoreflect.FileDescriptor
@@ -684,13 +980,46 @@ const file_bybitApi_proto_rawDesc = "" +
 	"\x0ftotalPositionMM\x18\x0f \x01(\tR\x0ftotalPositionMM\x12$\n" +
 	"\runrealisedPnl\x18\x10 \x01(\tR\runrealisedPnl\x12\x1a\n" +
 	"\busdValue\x18\x11 \x01(\tR\busdValue\x12$\n" +
-	"\rwalletBalance\x18\x12 \x01(\tR\rwalletBalance\"V\n" +
+	"\rwalletBalance\x18\x12 \x01(\tR\rwalletBalance\"n\n" +
 	"\x1aFuturesTransactionsRequest\x12\x1a\n" +
 	"\bpageSize\x18\x01 \x01(\x03R\bpageSize\x12\x1c\n" +
-	"\tPublicApi\x18\x02 \x01(\tR\tPublicApi\"\x1d\n" +
-	"\x1bFuturesTransactionsResponse2\xb2\x01\n" +
-	"\fBybitService\x12Z\n" +
-	"\x13FuturesTransactions\x12 .grpc.FuturesTransactionsRequest\x1a!.grpc.FuturesTransactionsResponse\x12F\n" +
+	"\tPublicApi\x18\x02 \x01(\tR\tPublicApi\x12\x16\n" +
+	"\x06UserId\x18\x03 \x01(\x03R\x06UserId\"\xc2\x01\n" +
+	"\x13TransactionResponse\x12\x19\n" +
+	"\bret_code\x18\x01 \x01(\x05R\aretCode\x12\x17\n" +
+	"\aret_msg\x18\x02 \x01(\tR\x06retMsg\x12/\n" +
+	"\x06result\x18\x03 \x01(\v2\x17.grpc.TransactionResultR\x06result\x122\n" +
+	"\fret_ext_info\x18\x04 \x01(\v2\x10.grpc.RetExtInfoR\n" +
+	"retExtInfo\x12\x12\n" +
+	"\x04time\x18\x05 \x01(\x03R\x04time\"d\n" +
+	"\x11TransactionResult\x12%\n" +
+	"\x04list\x18\x01 \x03(\v2\x11.grpc.TransactionR\x04list\x12(\n" +
+	"\x10next_page_cursor\x18\x02 \x01(\tR\x0enextPageCursor\"\xa3\x04\n" +
+	"\vTransaction\x12!\n" +
+	"\fbonus_change\x18\x01 \x01(\tR\vbonusChange\x12!\n" +
+	"\fcash_balance\x18\x02 \x01(\tR\vcashBalance\x12\x1b\n" +
+	"\tcash_flow\x18\x03 \x01(\tR\bcashFlow\x12\x1a\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\x12\x16\n" +
+	"\x06change\x18\x05 \x01(\tR\x06change\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12\x10\n" +
+	"\x03fee\x18\a \x01(\tR\x03fee\x12\x19\n" +
+	"\bfee_rate\x18\b \x01(\tR\afeeRate\x12\x18\n" +
+	"\afunding\x18\t \x01(\tR\afunding\x12\x0e\n" +
+	"\x02id\x18\n" +
+	" \x01(\tR\x02id\x12\x19\n" +
+	"\border_id\x18\v \x01(\tR\aorderId\x12\"\n" +
+	"\rorder_link_id\x18\f \x01(\tR\vorderLinkId\x12\x10\n" +
+	"\x03qty\x18\r \x01(\tR\x03qty\x12\x12\n" +
+	"\x04side\x18\x0e \x01(\tR\x04side\x12\x12\n" +
+	"\x04size\x18\x0f \x01(\tR\x04size\x12\x16\n" +
+	"\x06symbol\x18\x10 \x01(\tR\x06symbol\x12\x19\n" +
+	"\btrade_id\x18\x11 \x01(\tR\atradeId\x12\x1f\n" +
+	"\vtrade_price\x18\x12 \x01(\tR\n" +
+	"tradePrice\x12)\n" +
+	"\x10transaction_time\x18\x13 \x01(\tR\x0ftransactionTime\x12\x12\n" +
+	"\x04type\x18\x14 \x01(\tR\x04type2\xa8\x01\n" +
+	"\fBybitService\x12P\n" +
+	"\x13FuturesTransactions\x12 .grpc.FuturesTransactionsRequest\x1a\x17.grpc.TransactionResult\x12F\n" +
 	"\x0fSpotAccountInfo\x12\x18.grpc.SpotAccountRequest\x1a\x19.grpc.SpotAccountResponseB:Z8C:/Users/niyaz/GolandProjects/bybit_api_servic_grpc/grpcb\x06proto3"
 
 var (
@@ -705,31 +1034,36 @@ func file_bybitApi_proto_rawDescGZIP() []byte {
 	return file_bybitApi_proto_rawDescData
 }
 
-var file_bybitApi_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_bybitApi_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_bybitApi_proto_goTypes = []any{
-	(*SpotAccountRequest)(nil),          // 0: grpc.SpotAccountRequest
-	(*Response)(nil),                    // 1: grpc.Response
-	(*Result)(nil),                      // 2: grpc.Result
-	(*RetExtInfo)(nil),                  // 3: grpc.RetExtInfo
-	(*SpotAccountResponse)(nil),         // 4: grpc.SpotAccountResponse
-	(*Coin)(nil),                        // 5: grpc.Coin
-	(*FuturesTransactionsRequest)(nil),  // 6: grpc.FuturesTransactionsRequest
-	(*FuturesTransactionsResponse)(nil), // 7: grpc.FuturesTransactionsResponse
+	(*SpotAccountRequest)(nil),         // 0: grpc.SpotAccountRequest
+	(*Response)(nil),                   // 1: grpc.Response
+	(*Result)(nil),                     // 2: grpc.Result
+	(*RetExtInfo)(nil),                 // 3: grpc.RetExtInfo
+	(*SpotAccountResponse)(nil),        // 4: grpc.SpotAccountResponse
+	(*Coin)(nil),                       // 5: grpc.Coin
+	(*FuturesTransactionsRequest)(nil), // 6: grpc.FuturesTransactionsRequest
+	(*TransactionResponse)(nil),        // 7: grpc.TransactionResponse
+	(*TransactionResult)(nil),          // 8: grpc.TransactionResult
+	(*Transaction)(nil),                // 9: grpc.Transaction
 }
 var file_bybitApi_proto_depIdxs = []int32{
 	2, // 0: grpc.Response.result:type_name -> grpc.Result
 	3, // 1: grpc.Response.ret_ext_info:type_name -> grpc.RetExtInfo
 	4, // 2: grpc.Result.list:type_name -> grpc.SpotAccountResponse
 	5, // 3: grpc.SpotAccountResponse.coins:type_name -> grpc.Coin
-	6, // 4: grpc.BybitService.FuturesTransactions:input_type -> grpc.FuturesTransactionsRequest
-	0, // 5: grpc.BybitService.SpotAccountInfo:input_type -> grpc.SpotAccountRequest
-	7, // 6: grpc.BybitService.FuturesTransactions:output_type -> grpc.FuturesTransactionsResponse
-	4, // 7: grpc.BybitService.SpotAccountInfo:output_type -> grpc.SpotAccountResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	8, // 4: grpc.TransactionResponse.result:type_name -> grpc.TransactionResult
+	3, // 5: grpc.TransactionResponse.ret_ext_info:type_name -> grpc.RetExtInfo
+	9, // 6: grpc.TransactionResult.list:type_name -> grpc.Transaction
+	6, // 7: grpc.BybitService.FuturesTransactions:input_type -> grpc.FuturesTransactionsRequest
+	0, // 8: grpc.BybitService.SpotAccountInfo:input_type -> grpc.SpotAccountRequest
+	8, // 9: grpc.BybitService.FuturesTransactions:output_type -> grpc.TransactionResult
+	4, // 10: grpc.BybitService.SpotAccountInfo:output_type -> grpc.SpotAccountResponse
+	9, // [9:11] is the sub-list for method output_type
+	7, // [7:9] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_bybitApi_proto_init() }
@@ -743,7 +1077,7 @@ func file_bybitApi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bybitApi_proto_rawDesc), len(file_bybitApi_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

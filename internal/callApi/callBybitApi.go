@@ -2,7 +2,6 @@ package callApi
 
 import (
 	grpcFile "bybit_api_servic_grpc/grpc"
-	"bybit_api_servic_grpc/internal/callApi/models"
 	"fmt"
 	bybit "github.com/bybit-exchange/bybit.go.api"
 	"golang.org/x/net/context"
@@ -31,9 +30,26 @@ func NewCallApi(log *slog.Logger) *CallApi {
 	return &CallApi{log: log}
 }
 
-func (api *CallApi) GetFuturesTransactions(ctx context.Context, pageSize int, PublicApiKey string, PrivateApiKey string) (*models.Response, error) {
-	//TODO implement function
-	return nil, nil
+func (api *CallApi) GetFuturesTransactions(ctx context.Context, pageSize int64, PublicApiKey string, PrivateApiKey string) (*grpcFile.TransactionResponse, error) {
+	const op = "CallApi.GetTransactions"
+	client := bybit.NewBybitHttpClient(PublicApiKey, PrivateApiKey, bybit.WithBaseURL(bybit.MAINNET))
+	params := map[string]interface{}{"accountType": "UNIFIED", "category": "linear"}
+	accountResult, err := client.NewUtaBybitServiceWithParams(params).GetTransactionLog(context.Background())
+	if err != nil {
+		return nil, fmt.Errorf("%s: %w", op, err)
+	}
+	res := bybit.PrettyPrint(accountResult)
+	result := parseJsonGetTransactions(res)
+	return &result, nil
+
+}
+
+func parseJsonGetTransactions(res string) grpcFile.TransactionResponse {
+	var r grpcFile.TransactionResponse
+	if err := protojson.Unmarshal([]byte(res), &r); err != nil {
+		fmt.Printf("Failed to parse JSON: %v\nOriginal JSON: %s\n", err, res)
+	}
+	return r
 }
 
 func parseJsonGetBalance(res string) grpcFile.Response {

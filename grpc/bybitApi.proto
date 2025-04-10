@@ -68,6 +68,7 @@ message Coin {
 message FuturesTransactionsRequest {
   int64 pageSize = 1;
   string PublicApi = 2;
+  int64 UserId = 3;
 }
 
 message TransactionResponse {

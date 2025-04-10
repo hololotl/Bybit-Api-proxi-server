@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bybit_api_servic_grpc/internal/app"
 	"fmt"
 	bybit "github.com/bybit-exchange/bybit.go.api"
 	"golang.org/x/net/context"
@@ -15,11 +16,10 @@ const (
 )
 
 func main() {
-	GetTransaction()
-	//log := setupLogger(envLocal)
-	//conString := "user=postgres password=2005 dbname=petProjBybit sslmode=disable"
-	//application := app.NewApp(log, 8083, conString)
-	//application.GRPCServer.MustRun()
+	log := setupLogger(envLocal)
+	conString := "user=postgres password=2005 dbname=petProjBybit sslmode=disable"
+	application := app.NewApp(log, 8083, conString)
+	application.GRPCServer.MustRun()
 }
 
 func GetTransaction() {

@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BybitServiceClient interface {
-	FuturesTransactions(ctx context.Context, in *FuturesTransactionsRequest, opts ...grpc.CallOption) (*FuturesTransactionsResponse, error)
+	FuturesTransactions(ctx context.Context, in *FuturesTransactionsRequest, opts ...grpc.CallOption) (*TransactionResult, error)
 	SpotAccountInfo(ctx context.Context, in *SpotAccountRequest, opts ...grpc.CallOption) (*SpotAccountResponse, error)
 }
 
@@ -39,9 +39,9 @@ func NewBybitServiceClient(cc grpc.ClientConnInterface) BybitServiceClient {
 	return &bybitServiceClient{cc}
 }
 
-func (c *bybitServiceClient) FuturesTransactions(ctx context.Context, in *FuturesTransactionsRequest, opts ...grpc.CallOption) (*FuturesTransactionsResponse, error) {
+func (c *bybitServiceClient) FuturesTransactions(ctx context.Context, in *FuturesTransactionsRequest, opts ...grpc.CallOption) (*TransactionResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FuturesTransactionsResponse)
+	out := new(TransactionResult)
 	err := c.cc.Invoke(ctx, BybitService_FuturesTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func (c *bybitServiceClient) SpotAccountInfo(ctx context.Context, in *SpotAccoun
 // All implementations must embed UnimplementedBybitServiceServer
 // for forward compatibility.
 type BybitServiceServer interface {
-	FuturesTransactions(context.Context, *FuturesTransactionsRequest) (*FuturesTransactionsResponse, error)
+	FuturesTransactions(context.Context, *FuturesTransactionsRequest) (*TransactionResult, error)
 	SpotAccountInfo(context.Context, *SpotAccountRequest) (*SpotAccountResponse, error)
 	mustEmbedUnimplementedBybitServiceServer()
 }
@@ -75,7 +75,7 @@ type BybitServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedBybitServiceServer struct{}
 
-func (UnimplementedBybitServiceServer) FuturesTransactions(context.Context, *FuturesTransactionsRequest) (*FuturesTransactionsResponse, error) {
+func (UnimplementedBybitServiceServer) FuturesTransactions(context.Context, *FuturesTransactionsRequest) (*TransactionResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FuturesTransactions not implemented")
 }
 func (UnimplementedBybitServiceServer) SpotAccountInfo(context.Context, *SpotAccountRequest) (*SpotAccountResponse, error) {
